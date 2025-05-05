@@ -6,16 +6,17 @@ import Register from '../Register/Register';
 import Mensualidad from '../Mensualidad/Mensualidad';
 import Pass from '../Pass/Pase';
 import Clase from '../Clase/Clase';
+import KeyfobC from '../Keyfob/KeyfobC';
 
 
 
 function Home() {
-    /* 
+    /*
     1.- Pagar mensualidad
     2.- inscripciones ✅
-    3.- comprar llaves 
+    3.- comprar llaves
     4.- información  ✅
-    5-. Reserva de Clases 
+    5-. Reserva de Clases
     */
     return (
         <Box
@@ -42,6 +43,11 @@ function Home() {
             <Fade in timeout={1400}>
                 <div>
                     <Register />
+                </div>
+            </Fade>
+            <Fade in timeout={1400}>
+                <div>
+                    <KeyfobC/>
                 </div>
             </Fade>
         </Box >
