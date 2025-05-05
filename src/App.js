@@ -10,6 +10,7 @@ import MensualidadDetails from './pages/Mensualidad/MensualidadDetails';
 import PaseDetails from './pages/Pass/PaseDetails';
 import Inicio from './pages/Inicio/Inicio';
 import ClaseDetails from './pages/Clase/ClaseDetails';
+import Keyfob from './pages/Keyfob/Keyfob';
 
 function AppContent() {
   const location = useLocation();
@@ -63,12 +64,12 @@ function AppContent() {
           alignItems: 'center',
         }}
       >
-        {/* 
+        {/*
         1.- Pagar mensualidad
         2.- inscripciones ✅
-        3.- comprar llaves 
+        3.- comprar llaves
         4.- información  ✅
-        5-. Reserva de Clases 
+        5-. Reserva de Clases
         */}
         {showButton && <ButtonHome />}
         <Routes>
@@ -79,6 +80,7 @@ function AppContent() {
           <Route path="/Register" element={<RegisterDetails />} />
           <Route path="/Information" element={<InformationDetails />} />
           <Route path="/Clase" element={<ClaseDetails />} />
+          <Route path="/keyfobs" element={<Keyfob />} />
         </Routes>
       </Box>
     </div>
