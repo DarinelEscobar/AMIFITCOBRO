@@ -6,7 +6,7 @@ import Register from '../Register/Register';
 import Mensualidad from '../Mensualidad/Mensualidad';
 import Pass from '../Pass/Pase';
 import Clase from '../Clase/Clase';
-import KeyfobCard from '../../components/common/KeyfobCard';
+import KeyfobC from '../Keyfob/KeyfobC';
 
 
 
@@ -47,7 +47,7 @@ function Home() {
             </Fade>
             <Fade in timeout={1400}>
                 <div>
-                    <KeyfobCard />
+                    <KeyfobC/>
                 </div>
             </Fade>
         </Box >
