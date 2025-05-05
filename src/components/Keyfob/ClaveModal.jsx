@@ -11,11 +11,25 @@ function ClaveModal({ open, onClose }) {
   const handleSubmit = async () => {
     try {
       const { data } = await validarClave(clave);
+      const cantidad = parseInt(data?.producto?.Cantidad || 0);
+
+      if (cantidad < 1) {
+        setError('No hay stock de llaves KeyFob');
+        return;
+      }
+
       navigate('/keyfobs', { state: data });
     } catch (e) {
-      setError(e.response?.data?.message || 'Error');
+      const msg = e?.response?.data?.message;
+
+      if (msg?.includes('no es válida')) setError('Clave incorrecta');
+      else if (msg?.includes('Stock agotado')) setError('No hay llaves disponibles');
+      else if (msg?.includes('llaves disponibles')) setError('Sin inventario en este gimnasio');
+      else setError('Error al validar clave');
     }
   };
+
+
 
   return (
     <Dialog open={open} onClose={onClose}>
