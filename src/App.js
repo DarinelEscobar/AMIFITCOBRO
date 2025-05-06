@@ -6,7 +6,7 @@ import InformationDetails from './pages/Information/InformationDetails';
 import { Box } from '@mui/material';
 import ButtonHome from './components/common/ButtonHome';
 import RegisterDetails from './pages/Register/RegisterDetails';
-import MensualidadDetails from './pages/Mensualidad/MensualidadDetails';
+import MensualidadDetails from './pages/Mensualidad/PagarMensualidad';
 import PaseDetails from './pages/Pass/PaseDetails';
 import Inicio from './pages/Inicio/Inicio';
 import ClaseDetails from './pages/Clase/ClaseDetails';
