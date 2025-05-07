@@ -16,6 +16,7 @@ function Mensualidad() {
             icon={AddCircleIcon}
             text="PAGA TU MENSUALIDAD"
             onClick={() => navigate('/mensualidad')}
+            imagen="/img/icono-mensualidad.png"
         />
     );
 }

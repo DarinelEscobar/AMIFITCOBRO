@@ -20,37 +20,53 @@ function Home() {
     */
     return (
         <Box
-            width={'100%'} display={'flex'} justifyContent={'space-evenly'} alignItems={'center'} >
+            sx={{
+                width: '100%',
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'space-evenly',
+                alignItems: 'flex-start',
+            }}
+        >
+
             <Fade in timeout={800}>
-                <div>
-                    <Information />
+                <div style={{ height: '600px' }}>
+                    <Register />
                 </div>
             </Fade>
 
             <Fade in timeout={1000}>
-                <div>
-                    <Mensualidad />
+                <div style={{ height: '600px' }}>
+                    <Clase />
                 </div>
             </Fade>
 
             <Fade in timeout={1200}>
-                <div>
-                    <Clase />
-                    {/* <Pass /> */}
+                <div style={{ height: '600px' }}>
+                    <Mensualidad />
                 </div>
             </Fade>
 
             <Fade in timeout={1400}>
-                <div>
-                    <Register />
-                </div>
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px',
+                    alignContent: 'center',
+                    height: '600px',
+                    justifyContent: 'space-between',
+                }}>
+                    <div style={{ height: '550px' }}>
+                        <Information />
+
+                    </div>
+                    <div style={{ height: '550px' }}>
+                        <KeyfobC />
+                    </div>
+                </Box>
             </Fade>
-            <Fade in timeout={1400}>
-                <div>
-                    <KeyfobC/>
-                </div>
-            </Fade>
-        </Box >
+
+        </Box>
     )
 }
 

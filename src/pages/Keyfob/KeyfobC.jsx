@@ -12,10 +12,11 @@ function KeyfobC() {
             color="#10295B"
             backgroundColor="white"
             hoverBackgroundColor="white"
-            border_Radius={{ borderTopRightRadius: '100px' }}
+            border_Radius={{ borderTopRightRadius: '40px' }}
             icon={AddCircleIcon}
             text="ADQUIRIR LLAVE"
             onClick={() => navigate('/keyfobs')}
+            imagen="/img/icono-llave.png"
         />
     );
 }

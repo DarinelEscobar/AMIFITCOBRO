@@ -12,14 +12,13 @@ function ButtonHome() {
       variant="contained"
       sx={{
         position: 'absolute',
-        top: '-50px',
+        top: '-15px',
         left: '50%',
         transform: 'translateX(-50%)',
         backgroundColor: '#10295B',
         color: '#fff',
         borderRadius: '25px',
         padding: '10px 20px',
-        fontSize: '2rem',
         fontWeight: 'bold',
         boxShadow: 0,
       }}
@@ -28,13 +27,15 @@ function ButtonHome() {
       <Stack direction="column" alignItems="center" spacing={0.5}>
         <HomeIcon
           sx={{
-            fontSize: '4rem',
+            fontSize: '2.5rem',
           }}
         />
-        <Typography variant="body2">
+        {/* <Typography variant="subtitle1">
           Inicio
+        </Typography> */}
+        <Typography variant="body2">
+          {selectedId == '2' ? 'TUXTLA' : 'TAPACHULA'}
         </Typography>
-        <p style={{ color: 'white' }}>{selectedId}</p>
 
       </Stack>
     </Button>

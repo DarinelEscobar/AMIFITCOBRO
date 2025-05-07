@@ -18,6 +18,7 @@ function Clase() {
       icon={Filter7Icon}
       text="Selecciona tu CLASE"
       onClick={() => navigate('/Clase')}
+      imagen="/img/icono-clase.png"
     />
   );
 }

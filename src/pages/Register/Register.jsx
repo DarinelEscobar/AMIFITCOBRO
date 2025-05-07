@@ -18,6 +18,7 @@ function Register() {
       icon={HowToRegIcon}
       text="Regístrate AQUÍ!"
       onClick={() => navigate('/register')}
+      imagen="/img/icono-registro.png"
     />
   );
 }
