@@ -80,14 +80,3 @@ export const inscripcionClase = async (idCliente, idClase, correo, nombre, clase
         throw error;
     }
 };
-
-
-
-// // ACTUALIZA LA TAREA
-// export const putTask = async (id, task) => {
-//     const response = await axios.put(API_URL + 'Home/putTask/' + id, task, {
-//         headers: { "Content-Type": "application/json" },
-//     });
-//     return response.data;
-// };
-
