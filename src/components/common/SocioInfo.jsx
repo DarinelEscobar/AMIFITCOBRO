@@ -264,7 +264,6 @@ function SocioInfo({ open, onClose, claseSeleccionada, onSuccess, onRefresh }) {
                 </DialogContent>
             </Dialog>
 
-            {/* Diálogo de carga durante la recarga */}
             <StatusDialog
                 open={recargando}
                 status="loading"
