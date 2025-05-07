@@ -11,9 +11,11 @@ import {
 } from '@mui/material';
 import { AccessTime, CalendarToday, Person } from '@mui/icons-material';
 import SocioInfo from '../../components/common/SocioInfo';
+import { data } from 'react-router-dom';
 
-const ClaseCard = ({ clase }) => {
+const ClaseCard = ({ clase, onRefresh }) => {
     const [openSocioInfo, setOpenSocioInfo] = useState(false);
+    const [socioData, setSocioData] = useState(null);
 
     return (
         <>
@@ -42,14 +44,14 @@ const ClaseCard = ({ clase }) => {
                     </Typography>
 
                     <Chip
-                        label={clase.Status || 'Programada'}
+                        label={clase.Inscritos?.length >= 7 ? 'No disponible' : 'Disponible'}
                         size="small"
                         sx={{
                             position: 'absolute',
                             top: 12,
                             right: 12,
-                            backgroundColor: clase.Status === 'Completada' ? '#4caf50' : '#D0FF08',
-                            color: clase.Status === 'Completada' ? 'white' : '#10295B',
+                            backgroundColor: clase.Inscritos?.length >= 7 ? 'red' : '#D0FF08',
+                            color: clase.Inscritos?.length >= 7 ? 'white' : '#10295B',
                             fontWeight: 'bold',
                             fontSize: '0.7rem'
                         }}
@@ -88,25 +90,48 @@ const ClaseCard = ({ clase }) => {
                             </Stack>
                         </Stack>
                     </Stack>
+                    {/* EN CASO DE SER 7 INSCRITOS O MAS, SE OCULTA EL BOTON */}
+                    {clase.Inscritos?.length >= 7 && (
+                        <Button
+                            disabled
+                            fullWidth
+                            variant="contained"
+                            sx={{
+                                mt: 3,
+                                backgroundColor: '#D0FF08',
+                                color: '#10295B',
+                                fontWeight: 'bold',
+                                py: 1,
+                                borderRadius: '8px',
+                                '&:hover': {
+                                    backgroundColor: '#b8e600',
+                                }
+                            }}
+                        >
+                            Inscribirse
+                        </Button>
+                    )}
+                    {clase.Inscritos?.length < 7 && (
+                        <Button
+                            fullWidth
+                            variant="contained"
+                            sx={{
+                                mt: 3,
+                                backgroundColor: '#D0FF08',
+                                color: '#10295B',
+                                fontWeight: 'bold',
+                                py: 1,
+                                borderRadius: '8px',
+                                '&:hover': {
+                                    backgroundColor: '#b8e600',
+                                }
+                            }}
+                            onClick={() => { setOpenSocioInfo(true) }}
+                        >
+                            Inscribirse
+                        </Button>
+                    )}
 
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        sx={{
-                            mt: 3,
-                            backgroundColor: '#D0FF08',
-                            color: '#10295B',
-                            fontWeight: 'bold',
-                            py: 1,
-                            borderRadius: '8px',
-                            '&:hover': {
-                                backgroundColor: '#b8e600',
-                            }
-                        }}
-                        onClick={() =>{console.log(clase); setOpenSocioInfo(true)}}
-                    >
-                        Inscribirse
-                    </Button>
                 </CardContent>
             </Card>
 
@@ -114,12 +139,18 @@ const ClaseCard = ({ clase }) => {
                 open={openSocioInfo}
                 onClose={() => setOpenSocioInfo(false)}
                 claseSeleccionada={clase}
+                onRefresh={onRefresh}
+                onSuccess={(data) => {
+                    setSocioData(data);
+                    console.log("Datos del socio:", data);
+                }}
             />
+
         </>
     );
 };
 
-const ClasesCard = ({ clases }) => {
+const ClasesCard = ({ clases, onRefresh }) => {
     return (
         <Box sx={{
             display: 'grid',
@@ -131,6 +162,7 @@ const ClasesCard = ({ clases }) => {
                 <ClaseCard
                     key={clase.Id}
                     clase={clase}
+                    onRefresh={onRefresh}
                 />
             ))}
         </Box>

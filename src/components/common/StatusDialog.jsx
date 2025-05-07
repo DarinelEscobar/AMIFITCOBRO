@@ -1,4 +1,4 @@
-import React , { useState } from "react";
+import React from "react";
 import {
     Dialog,
     DialogContent,
@@ -14,10 +14,9 @@ import InfoIcon from "@mui/icons-material/Info";
 import CloseIcon from "@mui/icons-material/Close";
 import WarningIcon from "@mui/icons-material/Warning";
 
-const StatusDialog = ({ 
-    open, 
+const StatusDialog = ({
+    open,
     onClose,
-    // loading | success | error | info | warning
     status = "loading",
     title = "",
     message = "",
@@ -56,11 +55,19 @@ const StatusDialog = ({
 
     const currentStatus = statusConfig[status] || statusConfig.info;
 
+    // Manejo especial para el estado loading
+    const handleClose = (event, reason) => {
+        if (status === "loading") {
+            return; // Bloquea completamente el cierre
+        }
+        onClose();
+    };
+
     return (
         <Dialog
             open={open}
-            onClose={onClose}
-            disableEscapeKeyDown={status === "loading"}
+            onClose={handleClose}
+            disableEscapeKeyDown={status === "loading"} // Solo bloquea ESC en loading
             sx={{
                 "& .MuiDialog-paper": {
                     backgroundColor: "#10295B",
@@ -83,7 +90,7 @@ const StatusDialog = ({
                     gap: "35px",
                 }}
             >
-                {/* Botón para cerrar */}
+                {/* Botón para cerrar - Oculto en loading */}
                 {showCloseButton && status !== "loading" && (
                     <IconButton
                         onClick={onClose}
@@ -97,12 +104,14 @@ const StatusDialog = ({
                         <CloseIcon />
                     </IconButton>
                 )}
+
                 {currentStatus.icon}
+
                 <Stack spacing={2}>
                     <Typography variant="h4" sx={{ fontWeight: "bold" }}>
                         {title || currentStatus.defaultTitle}
                     </Typography>
-                    
+
                     {(message || currentStatus.defaultMessage) && (
                         <Typography variant="body1">
                             {message || currentStatus.defaultMessage}
@@ -110,6 +119,7 @@ const StatusDialog = ({
                     )}
                 </Stack>
 
+                {/* Botón de acción - Oculto en loading */}
                 {status !== "loading" && (
                     <Stack direction="row" justifyContent="center" width="100%">
                         <Button
