@@ -89,7 +89,7 @@ const ClaseCard = ({ clase, onRefresh }) => {
                                 </Typography>
                             </Stack>
                         </Stack>
-                    </Stack>
+                    </Stack> 
                     {/* EN CASO DE SER 7 INSCRITOS O MAS, SE OCULTA EL BOTON */}
                     {clase.Inscritos?.length >= 7 && (
                         <Button
