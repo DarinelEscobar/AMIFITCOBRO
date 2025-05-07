@@ -14,19 +14,37 @@ function ClaseDetails() {
     });
 
     const handleCloseDialog = () => {
-        setDialogState(prev => ({ ...prev, open: false }));
+       
+        if (dialogState.status !== 'loading') {
+            setDialogState(prev => ({ ...prev, open: false }));
+        }
+    };
+
+    const [refreshTrigger, setRefreshTrigger] = useState(false);
+
+    const reloadClases = async () => {
+        const id = sessionStorage.getItem('selectedId');
+        try {
+            const response = await obtenerClases(id);
+            if (response.status === 'success') {
+                setClases(response.data || []);
+            }
+        } catch (error) {
+            console.error('Error al recargar:', error);
+        }
     };
 
     useEffect(() => {
         const fetchClases = async () => {
+            // const id = '';
             const id = sessionStorage.getItem('selectedId');
 
             if (!id) {
                 setDialogState({
                     open: true,
                     status: 'error',
-                    title: 'Error requerido',
-                    message: 'No se ha seleccionado un ID válido'
+                    title: 'Error de sesión',
+                    message: 'No se ha iniciado sesión, por favor, contacta al administrador'
                 });
                 return;
             }
@@ -34,8 +52,8 @@ function ClaseDetails() {
             setDialogState({
                 open: true,
                 status: 'loading',
-                title: 'Cargando...',
-                message: ''
+                title: 'Cargando clases...',
+                message: 'Por favor espere'
             });
 
             try {
@@ -49,8 +67,8 @@ function ClaseDetails() {
                     setDialogState({
                         open: true,
                         status: 'error',
-                        title: 'Error',
-                        message: response.message || 'Error al cargar las clases'
+                        title: 'Error al cargar',
+                        message: response.message || 'No se pudieron obtener las clases'
                     });
                 }
             } catch (error) {
@@ -60,7 +78,7 @@ function ClaseDetails() {
                     open: true,
                     status: 'error',
                     title: 'Error de conexión',
-                    message: 'No se pudo conectar con el servidor'
+                    message: 'No se pudo conectar con el servidor, por favor, contacta al administrador'
                 });
             }
         };
@@ -72,10 +90,10 @@ function ClaseDetails() {
         <>
             <StatusDialog
                 open={dialogState.open}
+                onClose={handleCloseDialog}
                 status={dialogState.status}
                 title={dialogState.title}
                 message={dialogState.message}
-                handleClose={handleCloseDialog}
             />
 
             <Box sx={{
@@ -86,7 +104,7 @@ function ClaseDetails() {
                 p: 3
             }}>
                 <Typography
-                    variant="h5" // Más pequeño que h4
+                    variant="h5"
                     sx={{
                         color: '#10295B',
                         mb: 3,
@@ -118,6 +136,7 @@ function ClaseDetails() {
                     {clases.length > 0 ? (
                         <ClasesGrid
                             clases={clases}
+                            onRefresh={reloadClases}
                             onSelectClase={(clase) => {
                                 console.log('Clase seleccionada:', clase);
                             }}
@@ -130,7 +149,7 @@ function ClaseDetails() {
                             justifyContent: 'center'
                         }}>
                             <Typography variant="body1">
-                                No hay clases programadas
+                                {dialogState.status === 'loading' ? 'Cargando...' : 'No hay clases programadas'}
                             </Typography>
                         </Box>
                     )}
