@@ -14,7 +14,7 @@ function ClaseDetails() {
     });
 
     const handleCloseDialog = () => {
-        // Solo permite cerrar si no está en estado loading
+       
         if (dialogState.status !== 'loading') {
             setDialogState(prev => ({ ...prev, open: false }));
         }
@@ -22,7 +22,6 @@ function ClaseDetails() {
 
     const [refreshTrigger, setRefreshTrigger] = useState(false);
 
-    // Agrega esta función para recargar las clases
     const reloadClases = async () => {
         const id = sessionStorage.getItem('selectedId');
         try {
