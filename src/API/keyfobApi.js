@@ -6,7 +6,6 @@ const API_URL = process.env.REACT_APP_API_URL?.endsWith('/')
 
 
 export const validarClave = clave => {
-  console.log('API_URL:', API_URL);
   return axios.post(API_URL + 'KeyfobController/validar', { clave }, {
     headers: { "Content-Type": "application/json" }
   });
