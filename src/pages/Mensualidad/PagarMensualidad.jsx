@@ -12,11 +12,10 @@ function PagarMensualidad() {
 
   const [cliente, setCliente] = useState(null);
   const [clave, setClave]     = useState("");
-  const [error, setError]     = useState(null);   // {status,title,message}
+  const [error, setError]     = useState(null);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  /* -------- VALIDAR CLAVE -------- */
   const handleClaveSubmit = async () => {
     setLoading(true);
     try {
@@ -54,7 +53,6 @@ function PagarMensualidad() {
     setLoading(false);
   };
 
-  /* -------- PAGAR -------- */
   const handlePay = async () => {
     setLoading(true);
     try {
@@ -86,7 +84,6 @@ function PagarMensualidad() {
     setLoading(false);
   };
 
-  /* -------- RENDER -------- */
   return (
     <>
       {cliente ? (

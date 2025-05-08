@@ -5,7 +5,6 @@ import KeyfobAuthInput from './KeyfobAuthInput';
 import KeyfobPurchaseSummary from './KeyfobPurchaseSummary';
 import StatusDialog from '../../components/common/StatusDialog';
 
-
 function Keyfob() {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -13,17 +12,15 @@ function Keyfob() {
   const [cliente, setCliente]   = useState(state?.cliente || null);
   const [producto, setProducto] = useState(state?.producto || null);
   const [clave, setClave]       = useState('');
-  const [error, setError]       = useState(null);      // {status,title,message}
+  const [error, setError]       = useState(null);
   const [success, setSuccess]   = useState(false);
   const [loading, setLoading]   = useState(false);
 
-  /* ------------ VALIDAR CLAVE ------------ */
   const handleClaveSubmit = async () => {
     setLoading(true);
     try {
       const { data } = await validarClave(clave);
 
-      /* ---- API devolvió fallo lógico ---- */
       if (data.ok === false) {
         setError({
           status : 'error',
@@ -34,7 +31,6 @@ function Keyfob() {
         return;
       }
 
-      /* ---- Sin bandera ok: compatibilidad con respuesta antigua ---- */
       if (!data.cliente || !data.producto) {
         setError({
           status : 'error',
@@ -45,7 +41,6 @@ function Keyfob() {
         return;
       }
 
-      /* ---- Sin stock ---- */
       const cantidad = parseInt(data.producto.Cantidad || '0', 10);
       if (cantidad < 1) {
         setError({
@@ -57,7 +52,6 @@ function Keyfob() {
         return;
       }
 
-      /* ---- Éxito ---- */
       setCliente(data.cliente);
       setProducto(data.producto);
       setError(null);
@@ -71,7 +65,6 @@ function Keyfob() {
     setLoading(false);
   };
 
-  /* ------------ COMPRAR ------------ */
   const handleBuy = async () => {
     setLoading(true);
     try {
@@ -107,7 +100,6 @@ function Keyfob() {
 
   return (
     <>
-      {/* ========== VISTA CLAVE ========== */}
       {!cliente || !producto ? (
         <>
           <KeyfobAuthInput
@@ -131,7 +123,6 @@ function Keyfob() {
           )}
         </>
       ) : (
-      /* ========== VISTA RESUMEN / PAGO ========== */
         <KeyfobPurchaseSummary
           cliente={cliente}
           producto={producto}
