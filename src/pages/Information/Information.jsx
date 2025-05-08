@@ -14,10 +14,11 @@ function Information() {
       // backgroundColor="rgba(0, 123, 255, 0.25)"
       // hoverBackgroundColor="rgb(0, 123, 255)"
       hoverBackgroundColor="#D0FF08"
-      border_Radius={{ borderBottomRightRadius: '100px' }}
+      border_Radius={{ borderBottomRightRadius: '40px' }}
       icon={AddCircleIcon}
       text="PROMOCIONES"
       onClick={() => navigate('/information')}
+      imagen="/img/icono-promo.png"
     />
   );
 }

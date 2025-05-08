@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-function CardComponent({ backgroundColor, hoverBackgroundColor, border_Radius, icon: Icon, text, onClick, color }) {
+function CardComponent({ backgroundColor, hoverBackgroundColor, border_Radius, icon: Icon, text, onClick, color, imagen }) {
 
     const navigate = useNavigate();
 
@@ -19,9 +19,9 @@ function CardComponent({ backgroundColor, hoverBackgroundColor, border_Radius, i
             sx={{
                 ...border_Radius,
                 // width: '500px',
-                width: '350px',
+                width: '310px',
                 // height: '750px',
-                height: '600px',
+                height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
@@ -43,11 +43,12 @@ function CardComponent({ backgroundColor, hoverBackgroundColor, border_Radius, i
             <Box
                 sx={{
                     width: '100%',
-                    height: '35%',
+                    height: '20%',
                     backgroundColor: hoverBackgroundColor,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
+
                 }}
             >
                 <Typography
@@ -67,7 +68,21 @@ function CardComponent({ backgroundColor, hoverBackgroundColor, border_Radius, i
             <Box
                 sx={{
                     width: '100%',
-                    height: '30%',
+                    height: '60%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundImage: 'url(' + imagen + ')',
+                    backgroundSize: 'center',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                }}
+            >
+            </Box>
+            <Box
+                sx={{
+                    width: '100%',
+                    height: '20%',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -78,7 +93,7 @@ function CardComponent({ backgroundColor, hoverBackgroundColor, border_Radius, i
                     sx={{
                         border: '1px solid navy',
                         backgroundColor: 'transparent',
-                        padding: '10px 30px',
+                        padding: '5px 25px',
                         letterSpacing: '4px',
                         color: '#10295B',
                         fontWeight: '300',
