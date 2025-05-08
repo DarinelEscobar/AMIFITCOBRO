@@ -55,11 +55,8 @@ const StatusDialog = ({
 
     const currentStatus = statusConfig[status] || statusConfig.info;
 
-    // Manejo especial para el estado loading
     const handleClose = (event, reason) => {
-        if (status === "loading") {
-            return; // Bloquea completamente el cierre
-        }
+        if (status === "loading") return;
         onClose();
     };
 
@@ -67,7 +64,7 @@ const StatusDialog = ({
         <Dialog
             open={open}
             onClose={handleClose}
-            disableEscapeKeyDown={status === "loading"} // Solo bloquea ESC en loading
+            disableEscapeKeyDown={status === "loading"}
             sx={{
                 "& .MuiDialog-paper": {
                     backgroundColor: "#10295B",
@@ -90,7 +87,6 @@ const StatusDialog = ({
                     gap: "35px",
                 }}
             >
-                {/* Botón para cerrar - Oculto en loading */}
                 {showCloseButton && status !== "loading" && (
                     <IconButton
                         onClick={onClose}
@@ -119,7 +115,6 @@ const StatusDialog = ({
                     )}
                 </Stack>
 
-                {/* Botón de acción - Oculto en loading */}
                 {status !== "loading" && (
                     <Stack direction="row" justifyContent="center" width="100%">
                         <Button
@@ -148,102 +143,3 @@ const StatusDialog = ({
 };
 
 export default StatusDialog;
-// import React, { useState } from "react";
-// import {
-//     Dialog,
-//     DialogContent,
-//     CircularProgress,
-//     Typography,
-//     IconButton,
-//     Stack,
-//     Button
-// } from "@mui/material";
-// import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-// import ErrorIcon from "@mui/icons-material/Error";
-// import CloseIcon from "@mui/icons-material/Close";
-
-// const StatusDialog = ({ status, open, handleClose }) => {
-//     return (
-//         <Dialog
-//             open={open}
-//             disableEscapeKeyDown
-//             sx={{
-//                 "& .MuiDialog-paper": {
-//                     backgroundColor: "#10295B",
-//                     color: "#fff",
-//                     borderRadius: "12px",
-//                     padding: "30px",
-//                     boxShadow: "0px 5px 20px rgba(0,0,0,0.3)",
-//                     textAlign: "center",
-//                     minWidth: "320px",
-//                     position: "relative",
-//                 },
-//             }}
-//         >
-//             <DialogContent
-//                 sx={{
-//                     display: "flex",
-//                     flexDirection: "column",
-//                     alignItems: "center",
-//                     justifyContent: "center",
-//                     gap: "35px",
-//                 }}
-//             >
-//                 {/* Botón para cerrar */}
-//                 {status !== "loading" && (
-//                     <IconButton
-//                         onClick={handleClose}
-//                         sx={{
-//                             position: "absolute",
-//                             top: 8,
-//                             right: 8,
-//                             color: "#fff",
-//                         }}
-//                     >
-//                         <CloseIcon />
-//                     </IconButton>
-//                 )}
-
-//                 {status === "loading" && (
-//                     <CircularProgress size={100} thickness={4} sx={{ color: "#D0FF08" }} />
-//                 )}
-//                 {status === "success" && (
-//                     <CheckCircleIcon sx={{ fontSize: 100, color: "#4caf50" }} />
-//                 )}
-//                 {status === "error" && <ErrorIcon sx={{ fontSize: 100, color: "#ff5252" }} />}
-
-//                 <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-//                     {status === "loading"
-//                         ? "Cargando..."
-//                         : status === "success"
-//                             ? "Te has registrado exitosamente!"
-//                             : "No se pudo guardar la información. Por favor, contacte al administrador."
-//                     }
-//                 </Typography>
-
-//                 {(status === "success" || status === "error") && (
-//                     <Stack direction="row" justifyContent="center">
-//                         <Button
-//                             variant="contained"
-//                             sx={{
-//                                 backgroundColor: "#D0FF08",
-//                                 color: "#10295B",
-//                                 fontWeight: "bold",
-//                                 padding: "10px 20px",
-//                                 fontSize: "1.5rem",
-//                                 "&:hover": {
-//                                     backgroundColor: "#b8e600",
-//                                 },
-//                             }}
-//                             onClick={handleClose}
-//                         >
-//                             Aceptar
-//                         </Button>
-//                     </Stack>
-//                 )}
-//             </DialogContent>
-//         </Dialog>
-//     );
-// };
-
-// export default StatusDialog;
