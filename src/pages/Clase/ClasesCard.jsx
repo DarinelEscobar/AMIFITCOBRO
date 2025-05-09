@@ -53,7 +53,7 @@ const ClaseCard = ({ clase, onRefresh }) => {
                             backgroundColor: clase.Inscritos?.length >= 7 ? 'red' : '#D0FF08',
                             color: clase.Inscritos?.length >= 7 ? 'white' : '#10295B',
                             fontWeight: 'bold',
-                            fontSize: '0.7rem'
+                            fontSize: '1rem'
                         }}
                     />
                 </CardContent>
@@ -75,8 +75,9 @@ const ClaseCard = ({ clase, onRefresh }) => {
                         <Stack direction="row" spacing={1} alignItems="center">
                             <AccessTime sx={{ color: '#10295B', fontSize: '1rem' }} />
                             <Typography variant="body2">
-                                {clase.HoraInicio} - {clase.HoraTermino}
+                                {clase.HoraInicio.slice(0, 5)} hrs - {clase.HoraTermino.slice(0, 5)} hrs
                             </Typography>
+
                         </Stack>
 
                         <Divider sx={{ my: 1 }} />
@@ -89,7 +90,7 @@ const ClaseCard = ({ clase, onRefresh }) => {
                                 </Typography>
                             </Stack>
                         </Stack>
-                    </Stack> 
+                    </Stack>
                     {/* EN CASO DE SER 7 INSCRITOS O MAS, SE OCULTA EL BOTON */}
                     {clase.Inscritos?.length >= 7 && (
                         <Button
@@ -142,7 +143,6 @@ const ClaseCard = ({ clase, onRefresh }) => {
                 onRefresh={onRefresh}
                 onSuccess={(data) => {
                     setSocioData(data);
-                    console.log("Datos del socio:", data);
                 }}
             />
 

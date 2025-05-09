@@ -36,7 +36,7 @@ function ClaseDetails() {
 
     useEffect(() => {
         const fetchClases = async () => {
-            // const id = '';
+            
             const id = sessionStorage.getItem('selectedId');
 
             if (!id) {
