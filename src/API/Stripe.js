@@ -1,21 +1,10 @@
 import axios from "axios";
 
-// const API_URL = "http://localhost/amifit/";
-// const API_URL = "http://localhost/amifit/";
-const API_URL = "http://localhost/AmiFitCompleto/";
-// const API_URL = "https://amifit.mx/";
+const API_URL = process.env.REACT_APP_API_URL?.endsWith('/')
+  ? process.env.REACT_APP_API_URL
+  : process.env.REACT_APP_API_URL + '/';
 
-// export const createPaymentLink = async (id, monto, descripcion) => {
-//     const response = await axios.post(`${API_URL}Stripe/createPaymentLink`, { id: id, monto: monto, descripcion: descripcion, },
-//         {
-//             headers: { "Content-Type": "application/json" },
-//             withCredentials: true,
-//         }
-//     );
-
-//     return response.data; // paymentLink y paymentLinkId
-// };
-
+/* CREACION DE LINK DE PAGO */
 export const createPaymentLink = async (id, monto, descripcion) => {
     try {
         const response = await axios.post(
