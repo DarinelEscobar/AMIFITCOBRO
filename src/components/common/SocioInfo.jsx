@@ -36,11 +36,10 @@ function SocioInfo({ open, onClose, claseSeleccionada, onSuccess, onRefresh }) {
         }, 1000);
     };
 
-
     /* CONSULTA LA INFORMACION DEL CLIENTE */
     const handleSubmit = async () => {
         if (!clave.trim()) {
-            setError('Por favor ingresa tu KEYFOB');
+            setError('Por favor ingresa tu CLAVE de socio.');
             return;
         }
 
@@ -72,8 +71,6 @@ function SocioInfo({ open, onClose, claseSeleccionada, onSuccess, onRefresh }) {
                     claseSeleccionada.HoraInicio,
                     claseSeleccionada.HoraTermino
                 );
-
-                console.log('Inscripción exitosa:', inscripcionResponse);
 
                 /* SE GUARDA LA INFORMACION */
                 const data = {
@@ -160,7 +157,7 @@ function SocioInfo({ open, onClose, claseSeleccionada, onSuccess, onRefresh }) {
                             <Box display="flex" alignItems="center" mb={2}>
                                 <Schedule fontSize="medium" color="action" sx={{ mr: 1 }} />
                                 <Typography variant="body1" fontSize="1.1rem">
-                                    {claseSeleccionada.HoraInicio} - {claseSeleccionada.HoraTermino}
+                                    {claseSeleccionada.HoraInicio.slice(0, 5)} hrs - {claseSeleccionada.HoraTermino.slice(0, 5)} hrs
                                 </Typography>
                             </Box>
 
@@ -176,12 +173,12 @@ function SocioInfo({ open, onClose, claseSeleccionada, onSuccess, onRefresh }) {
                     {!socioData ? (
                         <>
                             <Typography variant="body1" fontSize={"1.5rem"} mt={2} mb={3}>
-                                Para inscribirte, ingresa tu KeyFob de socio:
+                                Para inscribirte, ingresa tu Clave de socio:
                             </Typography>
 
                             <TextField
                                 fullWidth
-                                label="KEYFOB"
+                                label="CLAVE"
                                 variant="outlined"
                                 value={clave}
                                 onChange={(e) => {
