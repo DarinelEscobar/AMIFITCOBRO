@@ -10,7 +10,7 @@ const CardQR = ({ paymentId, memberId }) => {
     const [paymentLinkId, setPaymentLinkId] = useState(null);
 
     useEffect(() => {
-        const generarQR = async () => { 
+        const generarQR = async () => {
             try {
                 const monto = 750;
                 const data = await createPaymentLink(paymentId, monto, 'membresia');
